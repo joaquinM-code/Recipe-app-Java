@@ -1,6 +1,7 @@
 package com.ecatom.recipeproject.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -24,6 +25,10 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL)//https://howtodoinjava.com/hibernate/hibernate-jpa-cascade-types/
     private Notes notes;
+
+    //One recipe can have many ingredients
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")//mappedBy establishes the foreign key
+    private Set<Ingredient> ingredients;
 
 
     //GETTERS AND SETTERS
@@ -105,5 +110,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
