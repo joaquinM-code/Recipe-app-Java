@@ -8,5 +8,17 @@
     <header>
         <h1 th:text="'The recipes home'"></h1>
     </header>
+    <main>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+            </tr>
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.id}"></td>
+                <td th:text="${recipe.description}"></td>
+            </tr>
+        </table>
+    </main>
 </body>
 </html>

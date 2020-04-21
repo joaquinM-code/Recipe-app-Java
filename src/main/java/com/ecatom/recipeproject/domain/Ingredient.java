@@ -1,23 +1,32 @@
 package com.ecatom.recipeproject.domain;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 @Entity
 public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String description;
     private BigDecimal amount;
+    @OneToOne(fetch = FetchType.EAGER)//https://www.udemy.com/course/spring-framework-5-beginner-to-guru/learn/lecture/7496514#notes
+    private UnitOfMeasure unitOfMeasure;
+    private String description;
+
 
     @ManyToOne //Many ingredients can have one recipe
     private Recipe recipe;
 
-    @OneToOne(fetch = FetchType.EAGER)//https://www.udemy.com/course/spring-framework-5-beginner-to-guru/learn/lecture/7496514#notes
-    private UnitOfMeasure unitOfMeasure;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(BigDecimal amount, UnitOfMeasure unitOfMeasure, String description) {
+        this.amount = amount;
+        this.unitOfMeasure = unitOfMeasure;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
