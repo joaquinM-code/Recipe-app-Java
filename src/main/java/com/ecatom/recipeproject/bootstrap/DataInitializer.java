@@ -4,15 +4,18 @@ import com.ecatom.recipeproject.domain.*;
 import com.ecatom.recipeproject.repositories.CategoryRepository;
 import com.ecatom.recipeproject.repositories.RecipeRepository;
 import com.ecatom.recipeproject.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component//By declaring it as a component, becomes a Spring bean and gets registered into the context
 public class DataInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -136,11 +139,13 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
         //Adding recipe
         recipes.add(tortelliniSoup);
+        log.debug("Loading recipes complete.......");
         return recipes;
 
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
 

@@ -2,11 +2,13 @@ package com.ecatom.recipeproject.services;
 
 import com.ecatom.recipeproject.domain.Recipe;
 import com.ecatom.recipeproject.repositories.RecipeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j //Logging and debugging utility
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
@@ -18,6 +20,9 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Set<Recipe> getRecipes() {
+
+        log.debug("I'm here");
+
         Set<Recipe> recipeSet = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipe -> recipeSet.add(recipe));
         return recipeSet;
