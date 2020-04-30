@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Show recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+    <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"
+            th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <header class="p-4 bg-info text-light mb-4">
+        <h1 th:text="${recipe.description}">Recipe Name</h1>
+    </header>
+<!--    general info-->
+    <main class="container">
+        <div class="card my-2">
+            <a th:href="${recipe.url}" href="#"><h2 class="card-header bg-info text-light" th:text="'By ' + ${recipe.source}">What does it take?</h2></a>
+            <div class="card-body row">
+                <div class="col-12 mb-4">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item" th:each="category : ${recipe.categories}"
+                            th:text="${category.name}">Category 1
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-6">
+                        <h5>Preparation time:</h5>
+                        <h5>Cook time:</h5>
+
+                    </div>
+                    <div class="col-6">
+                        <p th:text="${recipe.prepTime} + ' min'">30 min</p>
+                        <p th:text="${recipe.cookTime} + ' min'">30 min</p>
+
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-6">
+                        <h5>Difficulty:</h5>
+                        <h5>Servings:</h5>
+
+                    </div>
+                    <div class="col-6">
+                        <p th:text="${recipe.difficulty}">Easy</p>
+                        <p th:text="${recipe.servings}">4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card my-2">
+            <h2 class="card-header bg-info text-light">Ingredients</h2>
+            <div class="card-body">
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredients}"
+                        th:text="${ingredient.amount}
+                        + ' ' + ${ingredient.unitOfMeasure.uom}
+                        + ' - ' + ${ingredient.description}">ingredient</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="card my-2">
+            <h2 class="card-header bg-info text-light">Directions</h2>
+            <div class="card-body">
+                <p th:text="${recipe.directions}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                </p>
+            </div>
+        </div>
+
+<!--        notes-->
+        <div class="card my-2">
+            <h2 class="card-header bg-info text-light">Notes</h2>
+            <div class="card-body">
+                    <p th:text="${recipe.notes.recipeNotes}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Ad aliquam autem corporis cumque dicta dolore ducimus ea earum, eveniet,
+                    ex harum itaque mollitia officiis perspiciatis placeat quidem repellat unde, ut.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

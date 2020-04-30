@@ -103,6 +103,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         tortelliniSoup.setCookTime(25);
         tortelliniSoup.setPrepTime(10);
         tortelliniSoup.getCategories().add(italianCat);
+        tortelliniSoup.getCategories().add(spanishCat);
         tortelliniSoup.setDescription("Spring Vegetable Tortellini Soup with Pesto");
         tortelliniSoup.setDirections(
                 "1 Sauté the onions and garlic: Heat the olive oil in a medium pot over medium heat. Add the onion and garlic and sauté until tender, being sure not to brown them, about 5 minutes."+
